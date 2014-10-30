@@ -1,7 +1,7 @@
 Package.describe({
   name: "quietcreep:formation-blaze-widgets",
   summary: "Blaze-based HTML widgets for meteor-formation",
-  version: "1.0.0",
+  version: "1.0.1",
   // git: "http://github.com/quietcreep/meteor-formation"
 });
 
@@ -17,12 +17,10 @@ Package.onUse( function( api ) {
 
   var both = [ 'client', 'server' ];
 
-  api.use([ 'quietcreep:formation-core' ], both );
-  api.imply([ 'quietcreep:formation-core' ]);
+  api.use([ 'quietcreep:formation-core@1.0.0' ]);
+  api.imply([ 'quietcreep:formation-core@1.0.0' ]);
 
-  api.use([ 'underscore', 'accounts-base', 'tracker' ], both );
-  api.use([ 'templating', 'ui' ], 'client' );
-
+  api.use([ 'templating', 'ui', 'tracker' ], 'client' );
 
   //// fields ///////////////////////
   var fields = [
