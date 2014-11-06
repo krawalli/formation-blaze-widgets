@@ -43,57 +43,60 @@ Template.FileInput.events({
       fileType = fileData[0].split(':')[1].split(';')[0];
       fileData = fileData[1];
 
-      Meteor.call( "S3GeneratePolicy", self.field.uploadTo, function( err, value ){
+      Meteor.call( "S3GeneratePolicy", self.field.uploadTo, function( err, requestOb ){
+        console.log( requestOb );
         if ( err ) console.log( err );
         if ( err ) throw new Error( "Please check the file you've selected to upload" );
 
         var bucket = Formation.Settings.S3.bucket || err( "Please set Formation.Settings.S3.bucket" );
-        var url = "http://" + Formation.Settings.S3.bucket + ".s3.amazonaws.com/";
+        var url = "http://" + bucket + ".s3.amazonaws.com/";
+
+        // create boundary
         var bound = new Date;
         bound = bound.getTime();
+        bound = '--' + bound;
 
+        var postBody = [ bound ];
+        var form = {
+          "key": self.field.uploadTo,
+        	"policy": requestOb.policy64,
+        	"x-amz-algorithm": requestOb.algorithm,
+        	"x-amz-credential": requestOb.credential,
+        	"x-amz-date": requestOb.date,
+        	"x-amz-signature": requestOb.algorithm,
+        };
+
+
+        // create headers
         postHeaders = {
-          // "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-          // "x-amz-date": value.date,
           "Content-Type": "multipart/form-data; boundary=" + bound,
         };
 
-        bound = '--' + bound;
-        postBody = [ bound ];
-        postBody.push( "Content-Disposition: form-data; name=\"key\"",
-                        '',
-                        self.field.uploadTo + "${filename}",
-                        bound );
+        // add each field in form
+        for ( field in form ){
+          postBody.push( "Content-Disposition: form-data; name=\"" + field + "\"",
+                          '',
+                          form[ field ],
+                          bound );
+        }
 
-        _.each( value.conditions, function( val ){
-          if ( _.isObject( val ) && ! _.isArray( val ) ){
-            for ( ke in val ){
-              postBody.push( "Content-Disposition: form-data; name=\"" + ke + "\"",
-                              '',
-                              val[ ke ],
-                              bound );
-            }
-          }
-        });
-
-        postBody.push( "Content-Disposition: form-data; name=\"file\"; filename=\"" + file.name + "\"" )
+        // add data
+        postBody.push( "Content-Disposition: form-data; name=\"file\"; filename=\"" + file.name + "\"" );
         postBody.push( "Content-Type: " + fileType, '' );
         postBody.push( fileData );
         postBody.push( bound + "--", '' );
 
         var bodyString = postBody.join( "\r\n" );
 
+        // post to S3
         HTTP.post( url, {
           headers: postHeaders,
           content: bodyString
         }, function( error, result ){
           if ( error ) console.log( error.message );
           if ( result ) console.log( result );
-          // self.value = result;
         })
       })
-
-
     }
 
     reader.readAsDataURL( file );
