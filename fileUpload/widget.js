@@ -44,7 +44,6 @@ Template.FileInput.events({
       fileData = fileData[1];
 
       Meteor.call( "S3GeneratePolicy", self.field.uploadTo, function( err, requestOb ){
-        console.log( requestOb );
         if ( err ) console.log( err );
         if ( err ) throw new Error( "Please check the file you've selected to upload" );
 
@@ -59,17 +58,22 @@ Template.FileInput.events({
         var postBody = [ bound ];
         var form = {
           "key": self.field.uploadTo,
-        	"policy": requestOb.policy64,
+          "acl": requestOb.acl,
+          "Content-Type": fileType,
         	"x-amz-algorithm": requestOb.algorithm,
         	"x-amz-credential": requestOb.credential,
         	"x-amz-date": requestOb.date,
-        	"x-amz-signature": requestOb.algorithm,
+        	"Policy": requestOb.policy64,
+        	"x-amz-signature": requestOb.signature,
         };
 
 
         // create headers
         postHeaders = {
           "Content-Type": "multipart/form-data; boundary=" + bound,
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          // "Accept-Language": "en-US,en;q=0.5",
+          // "Content-Length": file.size
         };
 
         // add each field in form
@@ -93,7 +97,7 @@ Template.FileInput.events({
           headers: postHeaders,
           content: bodyString
         }, function( error, result ){
-          if ( error ) console.log( error.message );
+          if ( error ) console.log( error );
           if ( result ) console.log( result );
         })
       })

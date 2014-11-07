@@ -1,7 +1,7 @@
 Package.describe({
   name: "quietcreep:formation-blaze-widgets",
   summary: "Blaze-based HTML widgets for meteor-formation",
-  version: "1.0.1",
+  version: "1.0.2",
   // git: "http://github.com/quietcreep/meteor-formation"
 });
 

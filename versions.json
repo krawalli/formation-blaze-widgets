@@ -62,7 +62,7 @@
     ],
     [
       "minimongo",
-      "1.0.4"
+      "1.0.5"
     ],
     [
       "observe-sequence",
@@ -74,7 +74,7 @@
     ],
     [
       "quietcreep:formation-core",
-      "1.0.0"
+      "1.0.2"
     ],
     [
       "random",
