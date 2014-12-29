@@ -74,7 +74,7 @@
     ],
     [
       "quietcreep:formation-core",
-      "1.0.3_5"
+      "1.0.5_2"
     ],
     [
       "random",
@@ -102,6 +102,6 @@
     ]
   ],
   "pluginDependencies": [],
-  "toolVersion": "meteor-tool@1.0.35",
+  "toolVersion": "meteor-tool@1.0.36",
   "format": "1.0"
 }
