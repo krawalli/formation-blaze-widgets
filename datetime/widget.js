@@ -2,12 +2,13 @@ Template.DatetimeInput.events( genericEvents( 'change', 'input' ) );
 
 Template.DatetimeInput.rendered = function(){
   var self = this;
+
   var el = self.$(".datetimepicker");
   if ( $(el).datetimepicker ){
     self.$(".datetimepicker").datetimepicker({
       defaultDate: new Date(),
-      minDate: self.data.field.min,
-      maxDate: self.data.field.max,
+      minDate: new Date( self.data.field.min ),
+      maxDate: new Date( self.data.field.max ),
     });
   }
 
@@ -21,9 +22,11 @@ Template.DateInput.rendered = function(){
   var self = this;
 
   self.$(".datetimepicker").datetimepicker({
+    format: "M/D/YYYY",
     defaultDate: new Date(),
-    minDate: self.data.field.min,
-    maxDate: self.data.field.max,
+    minDate: new Date( self.data.field.min ),
+    maxDate: new Date( self.data.field.max ),
+
   });
 
   self.$(".datetimepicker").on( "dp.change", function(){
