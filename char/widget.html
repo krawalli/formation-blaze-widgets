@@ -1,13 +1,13 @@
 <template name="TextInput">
-  <input name="text" type="text" placeholder="{{ field.helpText }}" value="{{ toDOM }}" class="form-control {{ field.label }}">
+  <input name="text" type="text" placeholder="{{ field.helpText }}" value="{{ toDOM }}" {{ attributes }}>
 </template>
 
 
 <template name="TextArea">
-  <textarea name="{{ field.label }}" type="text" placeholder="{{ field.helpText }}" class="form-control {{ field.label }}" rows="{{ field.rows }}">{{ toDOM }}</textarea>
+  <textarea type="text" placeholder="{{ field.helpText }}" {{ attributes }}>{{ toDOM }}</textarea>
 </template>
 
 
 <template name="TextArray">
-  <input name="{{ field.label }}" type="text" placeholder="{{ field.helpText }}" value="{{ toDOM }}" class="form-control {{ field.label }}" />
+  <input type="text" placeholder="{{ field.helpText }}" value="{{ toDOM }}" {{ attributes }}/>
 </template>

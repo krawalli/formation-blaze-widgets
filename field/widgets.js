@@ -1,9 +1,9 @@
 
 Template.dxInput.events({
-    'click .edit': function( e ){
-      e.preventDefault();
-      this.editMode();
-    }
+  'click .edit': function( e ){
+    e.preventDefault();
+    this.editMode();
+  }
 });
 
 

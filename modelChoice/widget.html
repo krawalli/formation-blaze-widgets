@@ -4,7 +4,7 @@
 
 
 <template name="ModelSelectMultiple">
-  <select name="{{ field.label }}" data-live-search="true" class="form-control {{ field.label }} selectpicker" multiple>
+  <select name="{{ field.label }}" data-live-search="true" {{ attributes }} multiple>
     {{# each choices }}
       <option value="{{ _id }}" {{ selected ../value }}>{{ summary }}</option>
     {{/ each }}
@@ -13,7 +13,7 @@
 
 
 <template name="ModelSelect">
-  <select name="{{ field.label }}" class="form-control {{ field.label }}">
+  <select name="{{ field.label }}" {{ attributes }}>
     {{# each choices }}
       <option value="{{ _id }}" {{ selected ../value }}>{{ summary }}</option>
     {{/ each }}

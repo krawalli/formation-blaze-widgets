@@ -1,8 +1,4 @@
-
 Template.dxField.helpers({
-  getWidget: function(){
-    return Template[ this.widget ];
-  },
   instanceSummary: function( value ){
     if ( value === undefined || value === null  ){
       return '';
@@ -59,9 +55,31 @@ UI.registerHelper( "checkboxed", function( value ){
 });
 
 
+UI.registerHelper( "withAttributes", function( options ){
+  var context = Template.currentData();
 
-Template.dxInput.helpers({
-  getWidget: function(){
-    return Template[ this.widget ];
+  if ( typeof( options ) !== "object" ) return context;
+  if ( typeof( options.hash ) !== "object" ) return context;
+
+  context = options.hash.context || context;
+  if ( typeof( context ) === "object" ){
+    context.attributes        = context.attributes  || {};
+    context.attributes.class  = options.hash.class  || context.attributes.class;
+    context.attributes.name   = options.hash.name   || context.attributes.name;
+    context.attributes.role   = options.hash.role   || context.attributes.role;
+    context.attributes.id     = options.hash.id     || context.attributes.id;
+    context.attributes.type   = options.hash.type   || context.attributes.type;
+    context.attributes.horizontal   = typeof( options.hash.horizontal ) === "boolean" ? options.hash.horizontal : context.attributes.horizontal;
   }
-})
+  return context;
+});
+
+
+UI.registerHelper( "setAttributes", function( options ){
+  if ( typeof( options ) !== "object" ) return;
+  if ( typeof( options.hash ) !== "object" ) return;
+
+  var field = options.hash.context;
+  delete options.hash.context;
+  return field.setAttributes( options.hash );
+});
