@@ -1,13 +1,18 @@
 
 
 Template.dxButtons.events({
-  'click .btn-save': function( event ){
+  'click [data-action=btn-save]': function( event ){
     event.preventDefault();
     this.save();
   },
-  'click .btn-edit': function( event ){
+  'click [data-action=btn-edit]': function( event ){
     event.preventDefault();
-    this.editMode();
+    this.editMode( true );
+  },
+  'click [data-action=btn-cancel]': function( event ){
+    event.preventDefault();
+    this.revert();
+    this.editMode( false );
   }
 });
 

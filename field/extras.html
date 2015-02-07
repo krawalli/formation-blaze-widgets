@@ -2,10 +2,10 @@
 <template name="dxButtons">
   {{# if editable }}
     {{# if inEditMode }}
-      <button class="btn btn-success btn-save">save</button>
-      <button class="btn btn-warning btn-edit">cancel</button>
+      <button class="btn btn-success btn-save" data-action="btn-save">save</button>
+      <button class="btn btn-warning btn-edit" data-action="btn-cancel">cancel</button>
     {{ else }}
-      <button class="btn btn-default btn-edit">edit</button>
+      <button class="btn btn-default btn-edit" data-action="btn-edit">edit</button>
     {{/if }}
   {{/ if }}
 </template>
