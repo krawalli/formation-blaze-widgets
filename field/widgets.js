@@ -7,7 +7,7 @@ Template.dxInput.events({
 });
 
 
-genericEvents = function( eventType, eventSelector, valueSelector ){
+genericEvents = function( eventTypes, eventSelector, valueSelector ){
   var other = valueSelector || eventSelector;
   if (!_.isArray(eventTypes)) {
     eventTypes = [eventTypes];
