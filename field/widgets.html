@@ -4,7 +4,9 @@
 	<div class="container-fluid">
 		<div class="form-group {{#if errors }}has-error{{else}}has-success{{/if}}">
 			{{# if attributes.horizontal }}
-				<label class="col-sm-2 col-md-2 col-lg-2 control-label">{{ field.label }}</label>
+				<label class="col-sm-2 col-md-2 col-lg-2 control-label">
+				{{ field.label }}{{#if required}}&nbsp;<small class="text-info">*</small>{{/if}}
+				</label>
 				<div class="col-sm-10 col-md-10 col-lg-10">
 					{{# if inEditMode }}
 						{{> dxInput }}
@@ -26,7 +28,8 @@
 	</div>
 	{{ else }}
 		<div class="form-group">
-			<label class="field-label">{{ field.label }}</label>
+			<label class="field-label">{{ field.label }}{{#if required}}&nbsp;<small class="text-info">*</small>{{/if}}
+			</label>
 			{{# if inEditMode }}
 				{{> dxInput }}
 			{{ else }}
