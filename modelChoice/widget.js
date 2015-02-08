@@ -1,4 +1,4 @@
-Template.ModelRadioInput.events( genericRadioEvents( 'change', 'input', 'input:checked' ) );
+Template.ModelRadioInput.events( genericRadioEvents( ['input', 'propertychange', 'paste', 'change'], 'input', 'input:checked' ) );
 
 
 Template.ModelSelectMultiple.rendered = function(){

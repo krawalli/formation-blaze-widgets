@@ -1,4 +1,4 @@
-Template.DatetimeInput.events( genericEvents( 'change', 'input' ) );
+Template.DatetimeInput.events( genericEvents( ['input', 'propertychange', 'paste', 'change'], 'input' ) );
 
 Template.DatetimeInput.rendered = function(){
   var self = this;
