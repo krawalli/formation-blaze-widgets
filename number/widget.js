@@ -1,1 +1,1 @@
-Template.NumberInput.events( genericEvents( 'blur', 'input' ) );
+Template.NumberInput.events( genericEvents( ['input', 'propertychange', 'paste', 'change'], 'input' ) );

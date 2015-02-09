@@ -1,4 +1,4 @@
-Template.TimeTextInput.events( genericEvents( 'change', 'input') );
+Template.TimeTextInput.events( genericEvents( ['input', 'propertychange', 'paste', 'change'], 'input') );
 
 
 Template.TimeChoiceInput.events({

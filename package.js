@@ -13,6 +13,8 @@ Package.onUse( function( api ) {
 
   var both = [ 'client', 'server' ];
 
+  api.use('underscore');
+
   api.use([ 'quietcreep:formation-core@2.0.3' ]);
   api.imply([ 'quietcreep:formation-core@2.0.3' ]);
 

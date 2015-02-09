@@ -7,18 +7,26 @@ Template.dxInput.events({
 });
 
 
-genericEvents = function( eventType, eventSelector, valueSelector ){
+genericEvents = function( eventTypes, eventSelector, valueSelector ){
   var other = valueSelector || eventSelector;
-  var selector = eventType + ' ' + eventSelector;
+  if (!_.isArray(eventTypes)) {
+    eventTypes = [eventTypes];
+  }
+  var selector = [];
+  _.each(eventTypes, function (eventType) {
+    selector.push(eventType + ' ' + eventSelector);
+  });
+
+  selector = selector.join(', ');
 
   var events = {};
-  events[ selector ] = function( event, template ){
+  events[ selector ] = _.debounce(function (event, template) {
     var self = this;
     event.preventDefault();
     var genValue = self.fromDOM( template.find( other ).value );
     self.value = genValue === '' ? undefined : genValue;
     self.validate();
-  };
+  }, 300);
 
   return events;
 };
