@@ -9,7 +9,7 @@
 					{{# if inEditMode }}
 						{{> dxInput }}
 					{{ else }}
-						<p name="{{ field.label }}" class="form-control-static {{ field.label }}" style="white-space:pre-wrap">{{ instanceSummary toDOM }}</p>
+						<p name="{{ field.label }}" class="form-control-static {{ field.label }}" style="white-space:pre-wrap">{{ summary }}</p>
 					{{/ if }}
 				</div>
 			{{ else }}
@@ -18,7 +18,7 @@
 					{{# if inEditMode }}
 						{{> dxInput }}
 					{{ else }}
-						<p name="{{ field.label }}" class="form-control-static {{ field.label }}" style="white-space:pre-wrap">{{ instanceSummary toDOM }}</p>
+						<p name="{{ field.label }}" class="form-control-static {{ field.label }}" style="white-space:pre-wrap">{{ summary }}</p>
 					{{/ if }}
 				</div>
 			{{/if }}
@@ -30,7 +30,7 @@
 			{{# if inEditMode }}
 				{{> dxInput }}
 			{{ else }}
-				<p name="{{ field.label }}" class="{{ field.label }}" style="white-space:pre-wrap">{{ instanceSummary toDOM }}</p>
+				<p name="{{ field.label }}" class="{{ field.label }}" style="white-space:pre-wrap">{{ summary }}</p>
 			{{/ if }}
 		</div>
 	{{/ if }}
