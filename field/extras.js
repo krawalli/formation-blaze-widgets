@@ -33,13 +33,13 @@ Template.dxArray.helpers({
 });
 
 Template.dxArray.events({
-  'click .btn-add': function( event, template ){
+  'click [data-action=btn-add]': function( event, template ){
     event.preventDefault();
     event.stopPropagation();
     template.data.model[ template.data.field ].push( new template.data.model._model[ template.data.field ][0].newInstance );
     dxArrayDep.changed();
   },
-  'click .btn-remove': function( event, template ){
+  'click [data-action=btn-remove]': function( event, template ){
     event.preventDefault();
     event.stopPropagation();
     template.data.model[ template.data.field ] = _.without( template.data.model[ template.data.field ], this );

@@ -1,7 +1,7 @@
 Package.describe({
   name: "quietcreep:formation-blaze-widgets",
   summary: "Blaze-based HTML widgets for meteor-formation",
-  version: "2.0.5",
+  version: "2.0.5_2",
   git: "http://github.com/quietcreep/formation-blaze-widgets",
   documentation: null,
 });
@@ -15,8 +15,8 @@ Package.onUse( function( api ) {
 
   api.use('underscore');
 
-  api.use([ 'quietcreep:formation-core@2.0.5' ]);
-  api.imply([ 'quietcreep:formation-core@2.0.5' ]);
+  api.use([ 'quietcreep:formation-core@2.0.5_1' ]);
+  api.imply([ 'quietcreep:formation-core@2.0.5_1' ]);
 
   api.use( 'tsega:bootstrap3-datetimepicker@3.1.3_3', 'client' );
   api.imply( 'tsega:bootstrap3-datetimepicker@3.1.3_3', 'client' );
