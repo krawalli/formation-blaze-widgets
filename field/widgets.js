@@ -26,7 +26,7 @@ genericEvents = function( eventTypes, eventSelector, valueSelector ){
     var genValue = self.fromDOM( template.find( other ).value );
     self.value = genValue === '' ? undefined : genValue;
     self.validate();
-  }, 300);
+  }, 50);
 
   return events;
 };
